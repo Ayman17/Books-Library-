@@ -51,7 +51,7 @@ export const handleSubmit = (
   e.preventDefault();
 
   // Validate entire form
-  const { error } = schema.validate(formData, { abortEarly: true });
+  const { error } = schema.validate(formData, { abortEarly: false });
 
   if (error) {
     const validationErrors = error.details.reduce((acc, item) => {

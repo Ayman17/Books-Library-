@@ -20,7 +20,7 @@ export default function Login() {
     }
   
     function handleSubmitUse(e) {
-      handleSubmit(e, formData, setErrors, setErrorMessage, "/login", navigate)
+      handleSubmit(e, formData, setErrors, setErrorMessage, "/home", navigate)
     }
   
     function getValidationClassUse(field) {

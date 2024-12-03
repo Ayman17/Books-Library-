@@ -46,11 +46,11 @@ export default function NavBar() {
           </ul>
           {/* Social Icons */}
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
-            <li className="nav-item text-white fs-5">
+            <li className="nav-item text-white fs-5 mx-4">
               <i className="fa-brands fa-facebook m-1"></i>
               <i className="fa-brands fa-x-twitter m-1"></i>
               <i className="fa-brands fa-instagram m-1"></i>
-              <i className="fa-brands fa-spotify m-1 me-4"></i>
+              <i className="fa-brands fa-spotify m-1"></i>
             </li>
             {/* Authentication Links */}
             {authLinks.map((link) => (
