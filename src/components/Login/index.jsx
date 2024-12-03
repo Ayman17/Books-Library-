@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {handleChange, handleSubmit, getValidationClass} from "../Form Validation/index"
 
-
+// TODO: Refactor this to DRY
 export default function Login() {
     const navigate = useNavigate();
 
@@ -40,24 +40,7 @@ export default function Login() {
             className="mt-5 needs-validation"
             noValidate
           >
-            {/* Username Field */}
-            <div className="mb-3">
-              <label htmlFor="username" className="form-label">
-                Username
-              </label>
-              <input
-                type="text"
-                className={`form-control ${getValidationClassUse("name")}`}
-                id="username"
-                name="name"
-                value={formData.name}
-                onChange={handleChangeUse}
-                required
-              />
-              <div className="valid-feedback">Looks good!</div>
-              <div className="invalid-feedback">{errors.name}</div>
-            </div>
-  
+    
             {/* Email Field */}
             <div className="mb-3">
               <label htmlFor="email" className="form-label">
@@ -96,7 +79,7 @@ export default function Login() {
   
             {/* Submit Button */}
             <button type="submit" className="btn btn-outline-info">
-              Register
+              Login
             </button>
           </form>
         </div>

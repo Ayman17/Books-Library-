@@ -10,7 +10,6 @@ export default function Register() {
     email: "",
     password: "",
   });
-
   const [errors, setErrors] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
   
