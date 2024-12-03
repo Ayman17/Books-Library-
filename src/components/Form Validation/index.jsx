@@ -26,6 +26,7 @@ export const handleSubmit = (
   // Validate entire form
   const { error } = schema.validate(formData, { abortEarly: false });
 
+  console.log(error)
   if (error) {
     const validationErrors = error.details.reduce((acc, item) => {
       acc[item.path[0]] = item.message;
@@ -36,7 +37,6 @@ export const handleSubmit = (
   } else {
     setErrors({});
     setErrorMessage("");
-    alert("Registration Successful!");
     navigate(navTo);
   }
 };

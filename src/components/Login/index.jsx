@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Joi from "joi";
 import {handleChange, handleSubmit, getValidationClass} from "../Form Validation/index"
 
 // TODO: Refactor this to DRY
@@ -7,20 +8,34 @@ export default function Login() {
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
-      name: "",
       email: "",
       password: "",
     });
   
     const [errors, setErrors] = useState({});
     const [errorMessage, setErrorMessage] = useState("");
+
+    const loginSchema = Joi.object({
+      email: Joi.string()
+        .email({ tlds: { allow: false } })
+        .required()
+        .messages({
+          "string.empty": "Email is required",
+          "string.email": "Please enter a valid email address",
+        }),
+      password: Joi.string().min(3).max(30).required().messages({
+        "string.empty": "Password is required",
+        "string.min": "Password must be at least 3 characters",
+        "string.max": "Password must be at most 30 characters",
+      }),
+    });
     
     function handleChangeUse(e) {
-      handleChange(e, formData, setFormData, setErrors)
+      handleChange(e, formData, setFormData, setErrors, loginSchema)
     }
   
     function handleSubmitUse(e) {
-      handleSubmit(e, formData, setErrors, setErrorMessage, "/home", navigate)
+      handleSubmit(e, formData, setErrors, setErrorMessage, "/home", navigate, loginSchema)
     }
   
     function getValidationClassUse(field) {
