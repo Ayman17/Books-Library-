@@ -3,7 +3,7 @@ import "bootstrap/dist/js/bootstrap";
 import "./App.css";
 
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./components/Home";
 import NavBar from "./components/NavBar";
 import Login from "./components/Login";
@@ -15,20 +15,25 @@ import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 
 function App() {
-  const [userData, setUserData] = useState(null);
 
-  // useEffect(() => {
-  //   console.log(userData)
-  // }, [userData]);
+  const navigate = useNavigate()
+  const [userData, setUserData] = useState(null);
 
   function saveDataUser() {
     let encodedToken = localStorage.getItem("Token");
     let decodedToken = jwtDecode(encodedToken);
     setUserData(decodedToken);
   }
+
+  function logOut() {
+    localStorage.removeItem("Token");
+    setUserData(null);
+    navigate('')
+  }
+
   return (
     <>
-      <NavBar userData={userData} />
+      <NavBar userData={userData} logout={logOut} />
       <div className="container">
         <Routes>
           <Route path="" element={<Home />} />

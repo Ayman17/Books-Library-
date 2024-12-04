@@ -4,18 +4,12 @@ import { Link } from "react-router-dom";
 import "./style.css";
 
 let navLinks = [
-  { name: "Home", path: "home" },
-  { name: "Books", path: "books" },
-  { name: "People", path: "people" },
+  { name: "Home", path: "home", needLogIn: false },
+  { name: "Books", path: "books", needLogIn: false },
+  { name: "People", path: "people", needLogIn: false },
 ];
 
-let authLinks = [
-  { name: "Login", path: "login" },
-  { name: "Register", path: "register" },
-  { name: "Logout", path: "logout" },
-];
-
-export default function NavBar({ userData }) {
+export default function NavBar({ userData, logout }) {
   return (
     // TODO: make the navbar fixed
     <nav className="navbar navbar-expand-lg navbar-dark w-100 fs-5">
@@ -39,14 +33,11 @@ export default function NavBar({ userData }) {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           {/* Main Links */}
-          {userData && (
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              {navLinks.map((navLink) => (
-                <NavLinkCom key={navLink.name} link={navLink} />
-              ))}
-            </ul>
-          )}
-
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            {navLinks.map((navLink) => (
+              <NavLinkCom key={navLink.name} link={navLink} />
+            ))}
+          </ul>
           {/* Social Icons */}
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
             <li className="nav-item text-white fs-5 mx-4">
@@ -55,10 +46,41 @@ export default function NavBar({ userData }) {
               <i className="fa-brands fa-instagram m-1"></i>
               <i className="fa-brands fa-spotify m-1"></i>
             </li>
+
             {/* Authentication Links */}
-            {authLinks.map((link) => (
-              <NavLinkCom key={link.name} link={link} />
-            ))}
+            {userData == null && (
+              <>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active"
+                    aria-current="page"
+                    to="register"
+                  >
+                    Register
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active"
+                    aria-current="page"
+                    to="login"
+                  >
+                    Login
+                  </Link>
+                </li>
+              </>
+            )}
+            {userData && (
+              <li className="nav-item" onClick={logout}>
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  to="login"
+                >
+                  Logout
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>
