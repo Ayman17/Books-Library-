@@ -1,15 +1,16 @@
-
 export const handleChange = (e, formData, setFormData, setErrors, schema) => {
   const { name, value } = e.target;
   setFormData({ ...formData, [name]: value });
 
   // Validate field on change
-  const fieldSchema = schema.extract(name);
-  const { error } = fieldSchema.validate(value);
-  setErrors((prevErrors) => ({
-    ...prevErrors,
-    [name]: error ? error.message : "",
-  }));
+  if (name !== "rePassword") {
+    const fieldSchema = schema.extract(name);
+    const { error } = fieldSchema.validate(value);
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: error ? error.message : "",
+    }));
+  }
 };
 
 export const handleSubmit = (
@@ -26,7 +27,6 @@ export const handleSubmit = (
   // Validate entire form
   const { error } = schema.validate(formData, { abortEarly: false });
 
-  console.log(error)
   if (error) {
     const validationErrors = error.details.reduce((acc, item) => {
       acc[item.path[0]] = item.message;
