@@ -8,8 +8,10 @@ import {
 } from "../Form Validation/index";
 
 export default function Register() {
+  // Use Navigate
   const navigate = useNavigate();
 
+  // States
   const [formData, setFormData] = useState({
     userName: "",
     email: "",
@@ -20,6 +22,7 @@ export default function Register() {
   const [errors, setErrors] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
 
+  // Schema
   const registerSchema = Joi.object({
     userName: Joi.string()
       .min(3)
@@ -65,6 +68,7 @@ export default function Register() {
       }),
   });
 
+  // Utility Functions
   function handleChangeUse(e) {
     handleChange(e, formData, setFormData, setErrors, registerSchema);
   }
@@ -77,7 +81,8 @@ export default function Register() {
       setErrorMessage,
       "/login",
       navigate,
-      registerSchema
+      registerSchema,
+      "Register"
     );
   }
 
@@ -85,6 +90,7 @@ export default function Register() {
     return getValidationClass(field, errors, formData);
   }
 
+  // UI
   return (
     <div className="d-flex justify-content-center">
       <div className="mt-5 w-75">
@@ -121,7 +127,7 @@ export default function Register() {
                 </div>
               </div>
             </div>
-            {/* BairthDate Field */}
+            {/* BirthDate Field */}
             <div className="col-lg-6">
               <div>
                 <div className="mb-3">

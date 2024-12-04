@@ -1,4 +1,6 @@
-export const handleChange = (e, formData, setFormData, setErrors, schema) => {
+import axios from "axios";
+
+const handleChange = (e, formData, setFormData, setErrors, schema) => {
   const { name, value } = e.target;
   setFormData({ ...formData, [name]: value });
 
@@ -13,14 +15,15 @@ export const handleChange = (e, formData, setFormData, setErrors, schema) => {
   }
 };
 
-export const handleSubmit = (
+const handleSubmit = (
   e,
   formData,
   setErrors,
   setErrorMessage,
   navTo,
   navigate,
-  schema
+  schema,
+  formType,
 ) => {
   e.preventDefault();
 
@@ -37,12 +40,22 @@ export const handleSubmit = (
   } else {
     setErrors({});
     setErrorMessage("");
-    navigate(navTo);
+    axios
+      .post(`http://hawas.runasp.net/api/v1/${formType}`, formData)
+      .then((res) => {
+        navigate(navTo);
+        alert("Successful");
+      })
+      .catch((err) => {
+        setErrorMessage(err.response.data);
+      });
   }
 };
 
-export const getValidationClass = (field, errors, formData) => {
+const getValidationClass = (field, errors, formData) => {
   if (errors[field]) return "is-invalid";
   if (formData[field]) return "is-valid";
   return "";
 };
+
+export { handleChange, handleSubmit, getValidationClass };
