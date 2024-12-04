@@ -11,20 +11,33 @@ import Books from "./components/Books";
 import People from "./components/People";
 import Register from "./components/Register";
 import NotFound from "./components/Not Found";
+import { useEffect, useState } from "react";
+import { jwtDecode } from "jwt-decode";
 
 function App() {
+  const [userData, setUserData] = useState(null);
+
+  // useEffect(() => {
+  //   console.log(userData)
+  // }, [userData]);
+
+  function saveDataUser() {
+    let encodedToken = localStorage.getItem("Token");
+    let decodedToken = jwtDecode(encodedToken);
+    setUserData(decodedToken);
+  }
   return (
     <>
-      <NavBar />
+      <NavBar userData={userData} />
       <div className="container">
         <Routes>
           <Route path="" element={<Home />} />
           <Route path="home" element={<Home />} />
           <Route path="books" element={<Books />} />
           <Route path="people" element={<People />} />
-          <Route path="login" element={<Login />} />
+          <Route path="login" element={<Login saveDataUser={saveDataUser} />} />
           <Route path="register" element={<Register />} />
-          <Route path="*" element={<NotFound/>} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </>

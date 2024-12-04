@@ -15,7 +15,7 @@ let authLinks = [
   { name: "Logout", path: "logout" },
 ];
 
-export default function NavBar() {
+export default function NavBar({ userData }) {
   return (
     // TODO: make the navbar fixed
     <nav className="navbar navbar-expand-lg navbar-dark w-100 fs-5">
@@ -39,11 +39,14 @@ export default function NavBar() {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           {/* Main Links */}
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            {navLinks.map((navLink) => (
-              <NavLinkCom key={navLink.name} link={navLink} />
-            ))}
-          </ul>
+          {userData && (
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              {navLinks.map((navLink) => (
+                <NavLinkCom key={navLink.name} link={navLink} />
+              ))}
+            </ul>
+          )}
+
           {/* Social Icons */}
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
             <li className="nav-item text-white fs-5 mx-4">

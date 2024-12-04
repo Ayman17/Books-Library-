@@ -8,7 +8,7 @@ import {
 } from "../Form Validation/index";
 
 // TODO: Refactor this to DRY
-export default function Login() {
+export default function Login({ saveDataUser }) {
   // Use navigate
   const navigate = useNavigate();
 
@@ -50,7 +50,8 @@ export default function Login() {
       "/home",
       navigate,
       loginSchema,
-      "Login"
+      "Login",
+      saveDataUser
     );
   }
 

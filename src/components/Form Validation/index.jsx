@@ -24,6 +24,7 @@ const handleSubmit = (
   navigate,
   schema,
   formType,
+  saveDataUser = null
 ) => {
   e.preventDefault();
 
@@ -43,6 +44,10 @@ const handleSubmit = (
     axios
       .post(`http://hawas.runasp.net/api/v1/${formType}`, formData)
       .then((res) => {
+        if (formType === "Login") {
+          localStorage.setItem("Token", res?.data?.jwt);
+          saveDataUser();
+        }
         navigate(navTo);
         alert("Successful");
       })
