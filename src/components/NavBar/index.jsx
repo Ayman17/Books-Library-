@@ -34,9 +34,33 @@ export default function NavBar({ userData, logout }) {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           {/* Main Links */}
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            {navLinks.map((navLink) => (
-              <NavLinkCom key={navLink.name} link={navLink} />
-            ))}
+            <li className="nav-item">
+              <Link className="nav-link active" aria-current="page" to={"home"}>
+                Home
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                className="nav-link active"
+                aria-current="page"
+                to={"books"}
+              >
+                Books
+              </Link>
+            </li>
+            {userData && (
+              <>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active"
+                    aria-current="page"
+                    to={"people"}
+                  >
+                    People
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
           {/* Social Icons */}
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
@@ -72,7 +96,7 @@ export default function NavBar({ userData, logout }) {
             )}
             {userData && (
               <li className="nav-item logout" onClick={logout}>
-                  Logout
+                Logout
               </li>
             )}
           </ul>

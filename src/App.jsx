@@ -3,7 +3,7 @@ import "bootstrap/dist/js/bootstrap";
 import "./App.css";
 
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./components/Home";
 import NavBar from "./components/NavBar";
 import Login from "./components/Login";
@@ -27,7 +27,15 @@ function App() {
   function logOut() {
     localStorage.removeItem("Token");
     setUserData(null);
-    navigate("");
+    navigate("/home");
+  }
+
+  function ProtectedRoute(props) {
+    if (localStorage.getItem("Token") == null) {
+      return <Navigate to={"/login"} />;
+    } else {
+      return props.children;
+    }
   }
 
   return (
@@ -38,7 +46,14 @@ function App() {
           <Route path="" element={<Home />} />
           <Route path="home" element={<Home />} />
           <Route path="books" element={<Books />} />
-          <Route path="people" element={<People />} />
+          <Route
+            path="people"
+            element={
+              <ProtectedRoute>
+                <People />
+              </ProtectedRoute>
+            }
+          />
           <Route path="login" element={<Login saveDataUser={saveDataUser} />} />
           <Route path="register" element={<Register />} />
           <Route path="*" element={<NotFound />} />
