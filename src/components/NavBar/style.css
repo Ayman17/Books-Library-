@@ -1,3 +1,7 @@
 .navbar {
     background-color: #121926;
 }
+
+.logout {
+    cursor: pointer;
+}

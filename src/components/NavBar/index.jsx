@@ -71,14 +71,8 @@ export default function NavBar({ userData, logout }) {
               </>
             )}
             {userData && (
-              <li className="nav-item" onClick={logout}>
-                <Link
-                  className="nav-link active"
-                  aria-current="page"
-                  to="login"
-                >
+              <li className="nav-item logout" onClick={logout}>
                   Logout
-                </Link>
               </li>
             )}
           </ul>

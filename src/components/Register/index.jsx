@@ -7,6 +7,7 @@ import {
   getValidationClass,
 } from "../Form Validation/index";
 
+// TODO: make them login automatically when he register
 export default function Register() {
   // Use Navigate
   const navigate = useNavigate();

@@ -15,8 +15,7 @@ import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 
 function App() {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [userData, setUserData] = useState(null);
 
   function saveDataUser() {
@@ -28,7 +27,7 @@ function App() {
   function logOut() {
     localStorage.removeItem("Token");
     setUserData(null);
-    navigate('')
+    navigate("");
   }
 
   return (
