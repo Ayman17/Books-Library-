@@ -18,6 +18,12 @@ function App() {
   const navigate = useNavigate();
   const [userData, setUserData] = useState(null);
 
+  useEffect(() => {
+    if (localStorage.getItem("Token")) {
+      saveDataUser();
+    }
+  }, []);
+
   function saveDataUser() {
     let encodedToken = localStorage.getItem("Token");
     let decodedToken = jwtDecode(encodedToken);
