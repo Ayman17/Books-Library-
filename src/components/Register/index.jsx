@@ -6,6 +6,7 @@ import {
   handleSubmit,
   getValidationClass,
 } from "../Form Validation/index";
+import LoadingButton from "../LoadingButton";
 
 // TODO: make them login automatically when he register
 export default function Register() {
@@ -22,6 +23,7 @@ export default function Register() {
   });
   const [errors, setErrors] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState("none")
 
   // Schema
   const registerSchema = Joi.object({
@@ -83,7 +85,8 @@ export default function Register() {
       "/login",
       navigate,
       registerSchema,
-      "Register"
+      "Register",
+      setLoading
     );
   }
 
@@ -227,9 +230,13 @@ export default function Register() {
           </div>
 
           {/* Submit Button */}
-          <button type="submit" className="btn btn-outline-info">
-            Register
-          </button>
+          {loading === "loading" ? (
+            <LoadingButton />
+          ) : (
+            <button type="submit" className="btn btn-outline-info">
+              Register
+            </button>
+          )}
         </form>
       </div>
     </div>

@@ -6,6 +6,7 @@ import {
   handleSubmit,
   getValidationClass,
 } from "../Form Validation/index";
+import LoadingButton from "../LoadingButton";
 
 // TODO: Refactor this to DRY
 export default function Login({ saveDataUser }) {
@@ -19,6 +20,7 @@ export default function Login({ saveDataUser }) {
   });
   const [errors, setErrors] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState("none");
 
   // Schema
   const loginSchema = Joi.object({
@@ -51,6 +53,7 @@ export default function Login({ saveDataUser }) {
       navigate,
       loginSchema,
       "Login",
+      setLoading,
       saveDataUser
     );
   }
@@ -109,9 +112,13 @@ export default function Login({ saveDataUser }) {
           </div>
 
           {/* Submit Button */}
-          <button type="submit" className="btn btn-outline-info">
-            Login
-          </button>
+          {loading === "loading" ? (
+            <LoadingButton />
+          ) : (
+            <button type="submit" className="btn btn-outline-info">
+              Login
+            </button>
+          )}
         </form>
       </div>
     </div>

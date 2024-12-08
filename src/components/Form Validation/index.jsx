@@ -24,7 +24,8 @@ const handleSubmit = (
   navigate,
   schema,
   formType,
-  saveDataUser = null
+  setLoading,
+  saveDataUser = null,
 ) => {
   e.preventDefault();
 
@@ -41,6 +42,7 @@ const handleSubmit = (
   } else {
     setErrors({});
     setErrorMessage("");
+    setLoading("loading")
     axios
       .post(`http://hawas.runasp.net/api/v1/${formType}`, formData)
       .then((res) => {
@@ -49,10 +51,12 @@ const handleSubmit = (
           saveDataUser();
         }
         navigate(navTo);
+        setLoading("done")
         alert("Successful");
       })
       .catch((err) => {
         setErrorMessage(err.response.data);
+        setLoading("none")
       });
   }
 };
