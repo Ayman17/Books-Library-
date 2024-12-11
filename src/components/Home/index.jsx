@@ -1,7 +1,43 @@
-import React from 'react'
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import "./style.css";
 
 export default function Home() {
+  const [books, setBooks] = useState([]);
+  function getBooks() {
+    axios
+      .get(
+        `https://www.googleapis.com/books/v1/volumes?q=subject:fiction&key=AIzaSyBQAECvHFwhxREoiGP71WeRcOKknHliShI`
+      )
+      .then(({data : {items}}) => {
+        console.log(items)
+        let filtered = items.filter((item) => item.id !== "xZNVDAaxrGIC")
+        console.log(filtered)
+        setBooks(filtered);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  useEffect(() => {
+    getBooks();
+  }, []);
   return (
-    <div>Home</div>
-  )
+    <>
+      <div className="row text-center gx-3">
+        <div className="col-md-4">
+          <div className="">Description</div>
+        </div>
+        {books.map((book, i) => (
+          <div key={i} className="col-md-2 col-xl-2 ">
+            <div className=" bookCard ">
+              <img className=" w-100 h-75" src={book.volumeInfo.imageLinks.thumbnail} alt="book image" />
+              <h3 className="h5">{book.volumeInfo.title}</h3>
+              <h3 className="h5">{book.volumeInfo.authors}</h3>
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
+  );
 }

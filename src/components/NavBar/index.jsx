@@ -13,7 +13,7 @@ export default function NavBar({ userData, logout }) {
   return (
     // TODO: make the navbar fixed
     <nav className="navbar navbar-expand-lg navbar-dark w-100 fs-5">
-      <div className="container">
+      <div className="container-fluid">
         {/* Main Logo */}
         <Link className="navbar-brand" to="home">
           BookStore
