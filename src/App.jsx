@@ -47,7 +47,7 @@ function App() {
   return (
     <>
       <NavBar userData={userData} logout={logOut} />
-      <div className="container">
+      <div className="container pt-4">
         <Routes>
           <Route path="" element={<Home />} />
           <Route path="home" element={<Home />} />
