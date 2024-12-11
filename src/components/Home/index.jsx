@@ -38,7 +38,7 @@ export default function Home() {
                 src={book.volumeInfo.imageLinks.thumbnail}
                 alt="book image"
               />
-              <h3 className="h5 pt-2">{book.volumeInfo.title}</h3>
+              <h3 className="h4 pt-2">{book.volumeInfo.title}</h3>
             </div>
           </div>
         ))}
