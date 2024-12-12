@@ -2,23 +2,25 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./style.css";
 import Loading from "../../Loading";
+import { getDomain } from "../../constant/domain";
 
 export default function Home() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState("loading");
+  const [errorMessage, setErrorMessage] = useState("");
   function getBooks() {
     axios
       .get(
-        `https://www.googleapis.com/books/v1/volumes?q=subject:fiction&key=AIzaSyBQAECvHFwhxREoiGP71WeRcOKknHliShI`
+        `${getDomain()}/books/v1/volumes?q=subject:fiction&key=AIzaSyBQAECvHFwhxREoiGP71WeRcOKknHliShI`
       )
       .then(({ data: { items } }) => {
-        console.log(items);
         let filtered = items.filter((item) => item.id !== "xZNVDAaxrGIC");
         setBooks(filtered);
-        setLoading("done")
+        setLoading("done");
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(({ message }) => {
+        setErrorMessage(message);
+        setLoading("error");
       });
   }
   useEffect(() => {
@@ -28,6 +30,8 @@ export default function Home() {
     <>
       {loading === "loading" ? (
         <Loading />
+      ) : loading === "error" ? (
+        <h3 className=" alert alert-danger text-center">{errorMessage}</h3>
       ) : (
         <div className="row">
           <div className="col-md-4 d-flex flex-column justify-content-center">
