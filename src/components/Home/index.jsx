@@ -5,6 +5,7 @@ import Loading from "../../Loading";
 
 export default function Home() {
   const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState("loading");
   function getBooks() {
     axios
       .get(
@@ -13,8 +14,8 @@ export default function Home() {
       .then(({ data: { items } }) => {
         console.log(items);
         let filtered = items.filter((item) => item.id !== "xZNVDAaxrGIC");
-        console.log(filtered);
         setBooks(filtered);
+        setLoading("done")
       })
       .catch((err) => {
         console.log(err);
@@ -25,7 +26,7 @@ export default function Home() {
   }, []);
   return (
     <>
-      {!books ? (
+      {loading === "loading" ? (
         <Loading />
       ) : (
         <div className="row">
