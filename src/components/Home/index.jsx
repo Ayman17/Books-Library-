@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./style.css";
 import Loading from "../../Loading";
 import { getDomain } from "../../constant/domain";
+import BookCard from "../BookCard";
 
 export default function Home() {
   const [books, setBooks] = useState([]);
@@ -45,18 +46,7 @@ export default function Home() {
             <div className="descriptionBorder w-75"></div>
           </div>
           {books.map((book, i) => (
-            <div key={i} className="col-md-4 col-lg-2">
-              <div className="h-100 text-center">
-                <img
-                  className=" w-100 h-75"
-                  src={book.volumeInfo.imageLinks.thumbnail}
-                  alt="book image"
-                />
-                <h3 className="h4 pt-2">
-                  {book.volumeInfo.title ? book.volumeInfo.title : "Unknown"}
-                </h3>
-              </div>
-            </div>
+            <BookCard key={i} book={book} />
           ))}
           {/* Repeat for test */}
           {books.map((book, i) => (
