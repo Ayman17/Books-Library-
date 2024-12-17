@@ -33,7 +33,7 @@ export default function Home() {
       {loading === "loading" ? (
         <Loading />
       ) : loading === "error" ? (
-        <ErrorMessage errorMessage={errorMessage}/>
+        <ErrorMessage errorMessage={errorMessage} />
       ) : (
         <div className="row">
           <div className="col-md-4 d-flex flex-column justify-content-center">

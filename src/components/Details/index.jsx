@@ -1,33 +1,45 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import ErrorMessage from "../ErrorMessage";
 
 export default function Details() {
-  const [details, setDetails] = useState(null)
+  const [details, setDetails] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
   function getDetails() {
     axios
-      .get("https://www.googleapis.com/books/v1/volumes/KVGd-NabpW0C")
-      .then(({data}) => {
-        setDetails(data)
+      .get(`https://www.googleapis.com/books/v1/volumes/FOHtDwAAQBAJ`)
+      .then(({ data }) => {
+        setDetails(data.id);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(({ message }) => {
+        setErrorMessage(message);
       });
   }
   useEffect(() => {
     getDetails();
   }, []);
   return (
-    <div className="row bg-danger">
-      <div className="col-lg-8 bg-warning">
-        <div className=" bg-success">
-          <h1>hello</h1>
+    <>
+      {errorMessage ? (
+        <ErrorMessage errorMessage={errorMessage} />
+      ) : (
+        <div className="row bg-danger">
+          <div className="col-lg-8 bg-warning">
+            <div className=" bg-success">
+              <h1>hello</h1>
+            </div>
+          </div>
+          <div className="col-lg-4 bg-info">
+            <div className=" bg-secondary">
+              <img
+                className="w-75"
+                src={`https://books.google.com/books/content/images/frontcover/${details}?fife=w480-h690`}
+                alt="Book Imgae"
+              />
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="col-lg-4 bg-info">
-        <div className=" bg-secondary">
-          <h1>hello</h1>
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
