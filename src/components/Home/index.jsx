@@ -48,19 +48,6 @@ export default function Home() {
           {books.map((book, i) => (
             <BookCard key={i} book={book} />
           ))}
-          {/* Repeat for test */}
-          {books.map((book, i) => (
-            <div key={i} className="col-md-2 col-xl-2 bookCard">
-              <div className="h-100 text-center">
-                <img
-                  className=" w-100 h-75"
-                  src={book.volumeInfo.imageLinks.thumbnail}
-                  alt="book image"
-                />
-                <h3 className="h5 pt-2">{book.volumeInfo.title}</h3>
-              </div>
-            </div>
-          ))}
         </div>
       )}
     </>

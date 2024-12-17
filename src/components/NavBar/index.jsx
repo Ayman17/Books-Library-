@@ -1,5 +1,4 @@
 import React from "react";
-import NavLinkCom from "./components/NavLinkCom";
 import { Link } from "react-router-dom";
 import "./style.css";
 
@@ -35,7 +34,11 @@ export default function NavBar({ userData, logout }) {
           {/* Main Links */}
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to={"home"}>
+              <Link
+                className="nav-link active"
+                aria-current="page"
+                to={"/home"}
+              >
                 Home
               </Link>
             </li>
@@ -43,7 +46,7 @@ export default function NavBar({ userData, logout }) {
               <Link
                 className="nav-link active"
                 aria-current="page"
-                to={"books"}
+                to={"/books"}
               >
                 Books
               </Link>
@@ -54,7 +57,7 @@ export default function NavBar({ userData, logout }) {
                   <Link
                     className="nav-link active"
                     aria-current="page"
-                    to={"people"}
+                    to={"/people"}
                   >
                     People
                   </Link>

@@ -13,6 +13,7 @@ import Register from "./components/Register";
 import NotFound from "./components/Not Found";
 import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
+import Details from "./components/Details";
 
 function App() {
   const navigate = useNavigate();
@@ -57,6 +58,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <People />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="details/:id"
+            element={
+              <ProtectedRoute>
+                <Details />
               </ProtectedRoute>
             }
           />
