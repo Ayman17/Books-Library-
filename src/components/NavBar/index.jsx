@@ -2,12 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 
-let navLinks = [
-  { name: "Home", path: "home", needLogIn: false },
-  { name: "Books", path: "books", needLogIn: false },
-  { name: "People", path: "people", needLogIn: false },
-];
-
 export default function NavBar({ userData, logout }) {
   return (
     // TODO: make the navbar fixed

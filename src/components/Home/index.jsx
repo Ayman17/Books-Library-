@@ -4,6 +4,7 @@ import "./style.css";
 import Loading from "../../Loading";
 import { getDomain } from "../../constant/domain";
 import BookCard from "../BookCard";
+import ErrorMessage from "../ErrorMessage";
 
 export default function Home() {
   const [books, setBooks] = useState([]);
@@ -32,7 +33,7 @@ export default function Home() {
       {loading === "loading" ? (
         <Loading />
       ) : loading === "error" ? (
-        <h3 className=" alert alert-danger text-center">{errorMessage}</h3>
+        <ErrorMessage errorMessage={errorMessage}/>
       ) : (
         <div className="row">
           <div className="col-md-4 d-flex flex-column justify-content-center">
