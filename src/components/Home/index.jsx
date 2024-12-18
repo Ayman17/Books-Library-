@@ -16,7 +16,7 @@ export default function Home() {
         `${getDomain()}/books/v1/volumes?q=subject:fiction&key=AIzaSyBQAECvHFwhxREoiGP71WeRcOKknHliShI`
       )
       .then(({ data: { items } }) => {
-        let filtered = items.filter((item) => item.id !== "xZNVDAaxrGIC");
+        let filtered = items.filter((item) => !["xZNVDAaxrGIC", "TayGZxfYF_EC"].includes(item.id));
         setBooks(filtered);
         setLoading("done");
       })

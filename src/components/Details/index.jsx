@@ -3,13 +3,13 @@ import React, { useEffect, useState } from "react";
 import ErrorMessage from "../ErrorMessage";
 
 export default function Details() {
-  const [details, setDetails] = useState(null);
+  const [bookId, setBookId] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   function getDetails() {
     axios
       .get(`https://www.googleapis.com/books/v1/volumes/FOHtDwAAQBAJ`)
       .then(({ data }) => {
-        setDetails(data.id);
+        setBookId(data.id);
       })
       .catch(({ message }) => {
         setErrorMessage(message);
@@ -33,8 +33,8 @@ export default function Details() {
             <div className=" bg-secondary">
               <img
                 className="w-75"
-                src={`https://books.google.com/books/content/images/frontcover/${details}?fife=w480-h690`}
-                alt="Book Imgae"
+                src={`https://books.google.com/books/content/images/frontcover/${bookId}?fife=w480-h690`}
+                alt="Book Image"
               />
             </div>
           </div>
