@@ -31,15 +31,6 @@ export default function NavBar({ userData, logout }) {
               <Link
                 className="nav-link active"
                 aria-current="page"
-                to={"/home"}
-              >
-                Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                className="nav-link active"
-                aria-current="page"
                 to={"/books"}
               >
                 Books
@@ -51,9 +42,9 @@ export default function NavBar({ userData, logout }) {
                   <Link
                     className="nav-link active"
                     aria-current="page"
-                    to={"/people"}
+                    to={"/categories"}
                   >
-                    People
+                    Categories
                   </Link>
                 </li>
               </>

@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./style.css";
-import Loading from "../../Loading";
+import Loading from "../Loading";
 import { getDomain } from "../../constant/domain";
 import BookCard from "../BookCard";
 import ErrorMessage from "../ErrorMessage";

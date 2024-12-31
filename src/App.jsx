@@ -8,7 +8,7 @@ import Home from "./components/Home";
 import NavBar from "./components/NavBar";
 import Login from "./components/Login";
 import Books from "./components/Books";
-import People from "./components/People";
+import Categories from "./components/Categories";
 import Register from "./components/Register";
 import NotFound from "./components/Not Found";
 import { useEffect, useState } from "react";
@@ -54,10 +54,10 @@ function App() {
           <Route path="home" element={<Home />} />
           <Route path="books" element={<Books />} />
           <Route
-            path="people"
+            path="categories"
             element={
               <ProtectedRoute>
-                <People />
+                <Categories />
               </ProtectedRoute>
             }
           />
